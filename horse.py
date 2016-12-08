@@ -29,6 +29,8 @@ class SpaceGameWindow(arcade.Window):
         self.horseA1_sprite = ModelSprite('images/racerA1.png', model=self.world.horseA1)
         self.horseB1_sprite = ModelSprite('images/racerB1.png', model=self.world.horseB1)
 
+    def on_key_press(self, key, key_modifiers):
+        self.world.on_key_press(key, key_modifiers)
 
     def on_draw(self):
         arcade.start_render()
