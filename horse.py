@@ -35,37 +35,38 @@ class SpaceGameWindow(arcade.Window):
     def on_draw(self):
         arcade.start_render()
         self.background_sprite.draw()
-        if self.world.getState_A() == 1:
-            self.getSwitchBegin_A()
+        if self.world.get_state_a() == 1:
+            self.get_switch_begin_a()
             self.horseA1_sprite.draw()
-        elif self.world.getState_A() == 2:
-            self.getSwitchAfter_A()
+        elif self.world.get_state_a() == 2:
+            self.get_switch_after_a()
             self.horseA1_sprite.draw()
-        if self.world.getState_B() == 1:
-            self.getSwitchBegin_B()
+
+        if self.world.get_state_b() == 1:
+            self.get_switch_begin_b()
             self.horseB1_sprite.draw()
-        elif self.world.getState_B() == 2:
-            self.getSwitchAfter_B()
+        elif self.world.get_state_b() == 2:
+            self.get_switch_after_b()
             self.horseB1_sprite.draw()
 
     def animate(self, delta):
         self.world.animate(delta)
 
-    def getSwitchAfter_A(self):
+    def get_switch_after_a(self):
         self.horseA1_sprite = ModelSprite('images/racerA2.png', model=self.world.horseA1)
         return  self.horseA1_sprite
 
-    def getSwitchBegin_A(self):
+    def get_switch_begin_a(self):
         self.horseA1_sprite = ModelSprite('images/racerA1.png', model=self.world.horseA1)
         return  self.horseA1_sprite
 
-    def getSwitchAfter_B(self):
+    def get_switch_after_b(self):
         self.horseB1_sprite = ModelSprite('images/racerB2.png', model=self.world.horseB1)
-        return  self.horseA1_sprite
+        return  self.horseB1_sprite
 
-    def getSwitchBegin_B(self):
+    def get_switch_begin_b(self):
         self.horseB1_sprite = ModelSprite('images/racerB1.png', model=self.world.horseB1)
-        return  self.horseA1_sprite
+        return  self.horseB1_sprite
 
 if __name__ == '__main__':
     window = SpaceGameWindow(SCREEN_WIDTH, SCREEN_HEIGHT)
