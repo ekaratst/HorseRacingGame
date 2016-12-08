@@ -3,7 +3,7 @@ from models import World, HorseA, HorseB
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
-
+# state_press = True
 
 class ModelSprite(arcade.Sprite):
     def __init__(self, *args, **kwargs):
@@ -33,24 +33,26 @@ class SpaceGameWindow(arcade.Window):
         self.world.on_key_press(key, key_modifiers)
 
     def on_draw(self):
-        arcade.start_render()
-        self.background_sprite.draw()
-        if self.world.get_state_a() == 1:
-            self.get_switch_begin_a()
-            self.horseA1_sprite.draw()
-        elif self.world.get_state_a() == 2:
-            self.get_switch_after_a()
-            self.horseA1_sprite.draw()
+        if self.world.horseB1.get_state_game_b() and self.world.horseA1.get_state_game_a():
+            arcade.start_render()
+            self.background_sprite.draw()
+            if self.world.get_state_a() == 1:
+                self.get_switch_begin_a()
+                self.horseA1_sprite.draw()
+            elif self.world.get_state_a() == 2:
+                self.get_switch_after_a()
+                self.horseA1_sprite.draw()
 
-        if self.world.get_state_b() == 1:
-            self.get_switch_begin_b()
-            self.horseB1_sprite.draw()
-        elif self.world.get_state_b() == 2:
-            self.get_switch_after_b()
-            self.horseB1_sprite.draw()
+            if self.world.get_state_b() == 1:
+                self.get_switch_begin_b()
+                self.horseB1_sprite.draw()
+            elif self.world.get_state_b() == 2:
+                self.get_switch_after_b()
+                self.horseB1_sprite.draw()
 
     def animate(self, delta):
-        self.world.animate(delta)
+        if self.world.horseB1.get_state_game_b() and self.world.horseA1.get_state_game_a():
+            self.world.animate(delta)
 
     def get_switch_after_a(self):
         self.horseA1_sprite = ModelSprite('images/racerA2.png', model=self.world.horseA1)
