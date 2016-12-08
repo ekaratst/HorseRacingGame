@@ -19,7 +19,7 @@ class HorseA:
     def animate(self, delta):
         if self.x < 630:
             if self.direction_a == HorseA.DIR_STAYSTILL_A:
-                self.x += 4
+                self.x += 20
 
             self.direction_a = HorseA.DIR_MOVE_A
 
@@ -33,7 +33,7 @@ class HorseB:
         self.y = y
         self.direction_b = HorseB.DIR_MOVE_B
 
-    def switch_direction_B(self):
+    def switch_direction_b(self):
         if self.direction_b == HorseB.DIR_STAYSTILL_B:
             self.direction_b = HorseB.DIR_MOVE_B
         else:
@@ -42,7 +42,7 @@ class HorseB:
     def animate(self, delta):
         if self.x < 630:
             if self.direction_b == HorseB.DIR_STAYSTILL_B:
-                self.x += 4
+                self.x += 20
 
             self.direction_b = HorseB.DIR_MOVE_B
 
@@ -57,8 +57,8 @@ class World:
         self.width = width
         self.height = height
 
-        self.horseA1 = HorseA(self, 37, 400)
-        self.horseB1 = HorseB(self, 20, 180)
+        self.horseA1 = HorseA(self, 13, 315)
+        self.horseB1 = HorseB(self, 13, 120)
         self.background = Background(self, 400, 300)
 
     def animate(self, delta):

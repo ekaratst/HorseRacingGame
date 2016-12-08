@@ -25,7 +25,7 @@ class SpaceGameWindow(arcade.Window):
 
         arcade.set_background_color(arcade.color.WHITE)
         self.world = World(width, height)
-        self.background_sprite = ModelSprite('images/background.png', model=self.world.background)
+        self.background_sprite = ModelSprite('images/background2.png', model=self.world.background)
         self.horseA1_sprite = ModelSprite('images/racerA1.png', model=self.world.horseA1)
         self.horseB1_sprite = ModelSprite('images/racerB1.png', model=self.world.horseB1)
 
