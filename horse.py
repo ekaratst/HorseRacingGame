@@ -1,5 +1,4 @@
 import arcade
-import arcade.key
 from models import World, HorseA, HorseB
 
 SCREEN_WIDTH = 800
@@ -32,7 +31,6 @@ class SpaceGameWindow(arcade.Window):
 
     def on_key_press(self, key, key_modifiers):
         self.world.on_key_press(key, key_modifiers)
-
 
     def on_draw(self):
         if self.world.horseB1.get_state_game_b() and self.world.horseA1.get_state_game_a():
