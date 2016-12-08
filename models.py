@@ -11,6 +11,7 @@ class HorseA:
         self.direction_a = HorseA.DIR_MOVE_A
         self.state_game_a = True
         self.state_youwin_a = False
+        self.boost_a = 1
 
     def switch_direction_a(self):
         if self.direction_a == HorseA.DIR_STAYSTILL_A:
@@ -18,10 +19,15 @@ class HorseA:
         else:
             self.direction_a = HorseA.DIR_STAYSTILL_A
 
+    def boost_press_a(self):
+        self.boost_a = 0
+
     def animate(self, delta):
         if self.x < 633:
             self.state_game_a = True
             if self.direction_a == HorseA.DIR_STAYSTILL_A:
+                self.x += 20
+            if self.boost_a == 0:
                 self.x += 20
             self.direction_a = HorseA.DIR_MOVE_A
         else:
@@ -45,6 +51,7 @@ class HorseB:
         self.direction_b = HorseB.DIR_MOVE_B
         self.state_game_b = True
         self.state_youwin_b = False
+        self.boost_b = 1
 
     def switch_direction_b(self):
         if self.direction_b == HorseB.DIR_STAYSTILL_B:
@@ -52,10 +59,15 @@ class HorseB:
         else:
             self.direction_b = HorseB.DIR_STAYSTILL_B
 
+    def boost_press_b(self):
+        self.boost_b = 0
+
     def animate(self, delta):
         if self.x < 633:
             self.state_game_b = True
             if self.direction_b == HorseB.DIR_STAYSTILL_B:
+                self.x += 20
+            if self.boost_b == 0:
                 self.x += 20
             self.direction_b = HorseB.DIR_MOVE_B
         else:
@@ -132,6 +144,10 @@ class World:
             self.state_d_press = True
             self.state_a_press = False
             self.state_b = 2
+        if key == arcade.key.UP:
+            self.horseA1.boost_press_a()
+        # if key == arcade.key.W:
+        #     self.horseB1.boost_press_b()
 
     def get_state_a(self):
         return self.state_a
