@@ -10,6 +10,7 @@ class HorseA:
         self.y = y
         self.direction_a = HorseA.DIR_MOVE_A
         self.state_game_a = True
+        self.state_youwin_a = False
 
     def switch_direction_a(self):
         if self.direction_a == HorseA.DIR_STAYSTILL_A:
@@ -22,18 +23,20 @@ class HorseA:
             self.state_game_a = True
             if self.direction_a == HorseA.DIR_STAYSTILL_A:
                 self.x += 20
-                print(self.x)
             self.direction_a = HorseA.DIR_MOVE_A
         else:
+            self.state_youwin_a = True
             self.state_game_a = False
 
     def get_state_game_a(self):
         return self.state_game_a
 
+    def get_state_youwin_a(self):
+        return self.state_youwin_a
+
 class HorseB:
     DIR_STAYSTILL_B = 0
     DIR_MOVE_B = 1
-
 
     def __init__(self, world, x, y):
         self.world = world
@@ -41,6 +44,7 @@ class HorseB:
         self.y = y
         self.direction_b = HorseB.DIR_MOVE_B
         self.state_game_b = True
+        self.state_youwin_b = False
 
     def switch_direction_b(self):
         if self.direction_b == HorseB.DIR_STAYSTILL_B:
@@ -49,16 +53,20 @@ class HorseB:
             self.direction_b = HorseB.DIR_STAYSTILL_B
 
     def animate(self, delta):
-        if self.x < 630:
+        if self.x < 633:
             self.state_game_b = True
             if self.direction_b == HorseB.DIR_STAYSTILL_B:
                 self.x += 20
             self.direction_b = HorseB.DIR_MOVE_B
         else:
+            self.state_youwin_b = True
             self.state_game_b = False
 
     def get_state_game_b(self):
         return self.state_game_b
+
+    def get_state_youwin_b(self):
+        return self.state_youwin_b
 
 class Background:
     def __init__(self, world, x, y):
@@ -66,18 +74,34 @@ class Background:
         self.x = x
         self.y = y
 
+class Youwin:
+    def __init__(self, world, x, y):
+        self.world = world
+        self.x = x
+        self.y = y
+
+    def animate1(self, delta):
+        self.y = 315
+
+    def animate2(self, delta):
+        self.y = 120
+
 class World:
     def __init__(self, width, height):
         self.width = width
         self.height = height
-
         self.horseA1 = HorseA(self, 13, 315)
         self.horseB1 = HorseB(self, 13, 120)
         self.background = Background(self, 400, 300)
+        self.youwin = Youwin(self, 633, 120)
 
     def animate(self, delta):
         self.horseA1.animate(delta)
         self.horseB1.animate(delta)
+        if self.horseA1.state_youwin_a:
+            self.youwin.animate1(delta)
+        elif self.horseB1.state_youwin_b:
+            self.youwin.animate2(delta)
 
     state_a = 1
     state_b = 1
