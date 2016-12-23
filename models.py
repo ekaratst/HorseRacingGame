@@ -26,7 +26,7 @@ class HorseA:
         if self.x < 633:
             self.state_game_a = True
             if self.direction_a == HorseA.DIR_STAYSTILL_A:
-                self.x += 20
+                self.x += 10
             if self.boost_a == 0:
                 self.x += 20
             self.direction_a = HorseA.DIR_MOVE_A
@@ -66,7 +66,7 @@ class HorseB:
         if self.x < 633:
             self.state_game_b = True
             if self.direction_b == HorseB.DIR_STAYSTILL_B:
-                self.x += 20
+                self.x += 10
             if self.boost_b == 0:
                 self.x += 20
             self.direction_b = HorseB.DIR_MOVE_B
@@ -144,8 +144,8 @@ class World:
             self.state_d_press = True
             self.state_a_press = False
             self.state_b = 2
-        if key == arcade.key.UP:
-            self.horseA1.boost_press_a()
+        # if key == arcade.key.UP:
+        #     self.horseA1.boost_press_a()
         # if key == arcade.key.W:
         #     self.horseB1.boost_press_b()
 

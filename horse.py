@@ -1,5 +1,6 @@
 import arcade
 from models import World, HorseA, HorseB
+import arcade.sound
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
@@ -28,6 +29,8 @@ class SpaceGameWindow(arcade.Window):
         self.horseA1_sprite = ModelSprite('images/racerA1.png', model=self.world.horseA1)
         self.horseB1_sprite = ModelSprite('images/racerB1.png', model=self.world.horseB1)
         self.youwin_sprite = ModelSprite('images/youwin.png', model=self.world.youwin)
+        self.sound = arcade.sound.load_sound('sounds/music.wav')
+        self.sound.play()
 
     def on_key_press(self, key, key_modifiers):
         self.world.on_key_press(key, key_modifiers)
